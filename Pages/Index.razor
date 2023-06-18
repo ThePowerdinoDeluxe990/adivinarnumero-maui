@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<div class="text-center">
+    <p>Juego de adivinar numeros</p>
+        <input @bind=@response />
+        <p class="row"></p>
+    <button @onclick="revisar" class="btn btn-info"> revisar</button>
+</div>
+
+@if(response == month)
+{
+    <div class="text-center">
+        <strong class="text-success">@frase</strong>
+    </div>
+}
+else
+{   
+    <div class="text-center">
+        <p>@frase</p>
+    </div>
+}
+
+
+@code{
+
+   
+    private static Random rnd = new Random();
+    private int month = rnd.Next( 15);
+
+    private int response;
+
+    private string frase;
+
+    void revisar()
+    {
+        if (response == month)
+        {
+            frase = "has ganado";
+
+        }
+        else if (response > month)
+        {
+            frase = "es mas pequeño";
+        }else if(response < month)
+        {
+            frase = "es mas grande";
+        }
+        else
+        {
+            frase = "";
+        }
+    }
+
+
+}
+
+
+
+
